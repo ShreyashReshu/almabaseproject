@@ -73,7 +73,7 @@ class LoginView(APIView):
         if not phone:
             return Response({"detail": "Invalid phone"}, status=status.HTTP_400_BAD_REQUEST)
         password = serializer.validated_data["password"]
-        user = authenticate(request, phone=phone, password=password)
+        user = authenticate(request, username=phone, password=password)
         if user:
             return Response({"tokens": issue_tokens(user)}, status=status.HTTP_200_OK)
         try:
